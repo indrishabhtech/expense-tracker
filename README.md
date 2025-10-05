@@ -42,7 +42,7 @@ Try the live app:
 |---------------|-------------|
 | ![TracknSpend Desktop Screenshot]([[https://tracknspend.netlify.app/](https://tracknspend.netlify.app/)](https://tracknspend.netlify.app/)/preview-desktop.png) | ![TracknSpend Mobile Screenshot](https://tracknspend.netlify.app//preview-mobile.png) |
 
-*(Screenshots are for illustration — replace with your own if available.)*
+*(Screenshots are for illustration *
 
 ---
 
