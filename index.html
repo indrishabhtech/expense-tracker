@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>💼 Personal Finance Tracker</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- html2canvas required for Export -> load BEFORE script.js so it's available when script runs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <!-- Floating emojis container -->
+  <div id="floatingEmojis" class="floating-emojis" aria-hidden="true"></div>
+
+  <div class="container">
+    <header>
+      <h1>💼 Personal Finance Tracker</h1>
+      <p>Master your money, achieve your dreams</p>
+    </header>
+
+    <div class="tabs" role="tablist" aria-label="Main tabs">
+      <button id="tabTracker" class="tab-btn active" role="tab" aria-selected="true"><i class="fa-solid fa-calculator"></i> Tracker</button>
+      <!-- <button id="tabSummary" class="tab-btn" role="tab" aria-selected="false"><i class="fa-solid fa-chart-pie"></i> Summary</button>
+      dark mode toggle button -->
+      <!-- <button id="darkModeToggle" class="tab-btn" role="button" aria-pressed="false"><i class="fa-solid fa-moon"></i> Dark Mode</button> -->
+      <button id="tabAbout" class="tab-btn" role="tab" aria-selected="false"><i class="fa-solid fa-circle-info"></i> About & Tips</button> 
+    </div>
+
+    <!-- TRACKER TAB -->
+    <div id="trackerTab" class="tab-content active" role="tabpanel">
+      <section>
+        <h2><i class="fa-solid fa-chart-line"></i> Income Sources</h2>
+        <div class="grid">
+          <div class="card"><label>Base Salary</label><input type="number" name="baseSalary" placeholder="50000" /></div>
+          <div class="card"><label>Overtime</label><input type="number" name="overtime" placeholder="5000" /></div>
+          <div class="card"><label>Extra Salary</label><input type="number" name="extraSalary" placeholder="3000" /></div>
+          <div class="card"><label>Investment Returns</label><input type="number" name="returns" placeholder="2000" /></div>
+        </div>
+      </section>
+
+      <section>
+        <h2><i class="fa-solid fa-bullseye"></i> Financial Goals</h2>
+        <div class="grid">
+          <div class="card"><label>Monthly Savings</label><input type="number" name="savings" placeholder="10000" /></div>
+          <div class="card"><label>Investments</label><input type="number" name="investment" placeholder="8000" /></div>
+          <div class="card"><label>Family Support</label><input type="number" name="familySupport" placeholder="5000" /></div>
+          <div class="card"><label>Emergency Fund</label><input type="number" name="emergencyFund" placeholder="3000" /></div>
+          <div class="card"><label>EMI Amount</label><input type="number" name="emiAmount" placeholder="4000" /></div>
+          <div class="card"><label>EMI Interest</label><input type="number" name="emiInterest" placeholder="500" /></div>
+        </div>
+      </section>
+
+      <section>
+        <h2><i class="fa-solid fa-credit-card"></i> Monthly Necessary Expenses</h2>
+        <div class="grid">
+          <div class="card"><label>PG + Food</label><input type="number" name="pg" placeholder="6000" value="6000" /></div>
+          <div class="card"><label>Recharge</label><input type="number" name="recharge" placeholder="300" value="300" /></div>
+          <div class="card"><label>Haircut</label><input type="number" name="haircut" placeholder="150" value="150" /></div>
+          <div class="card"><label>Bills</label><input type="number" name="bills" placeholder="500" value="500" /></div>
+          <div class="card"><label>Gym</label><input type="number" name="gym" placeholder="1200" value="1200" /></div>
+        </div>
+      </section>
+
+      <!-- Exportable area: SUMMARY + ADVICE -->
+      <div id="exportable">
+        <section class="summary">
+          <div class="summary-header">
+            <h2>📊 Financial Summary</h2>
+            <div class="export-actions">
+              <button id="exportBtn" class="export-btn"><i class="fa-solid fa-download"></i> Export Summary as Image</button>
+            </div>
+          </div>
+
+          <div class="summary-grid">
+            <div class="summary-box" id="totalIncome">
+              <p class="muted">Total Income</p>
+              <h3>₹0</h3>
+            </div>
+            <div class="summary-box" id="necessaryExpenses">
+              <p class="muted">Necessary Expenses</p>
+              <h3>₹0</h3>
+            </div>
+            <div class="summary-box" id="totalExpenses">
+              <p class="muted">Total Expenses</p>
+              <h3>₹0</h3>
+            </div>
+            <div class="summary-box" id="balance">
+              <p class="muted">Balance</p>
+              <h3>₹0</h3>
+            </div>
+          </div>
+
+          <div class="savings-rate">
+            <p><strong>Savings Rate:</strong> <span id="savingsRate">0%</span></p>
+          </div>
+        </section>
+
+        <section class="advice-box" id="adviceBox" aria-live="polite">
+          <h3><i class="fa-solid fa-lightbulb"></i> Personalized Advice</h3>
+          <ul id="adviceList" class="advice-list">
+            <!-- Filled dynamically -->
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <!-- ABOUT TAB -->
+    <div id="aboutTab" class="tab-content" role="tabpanel" aria-hidden="true">
+      <section class="info-box">
+        <h2><i class="fa-solid fa-circle-info"></i> How to Use This Tracker</h2>
+        <ul>
+          <li>📝 Fill your income sources (salary, overtime, returns).</li>
+          <li>💰 Add your financial goals (savings, investments, etc.).</li>
+          <li>📋 Input monthly expenses like rent, bills, and subscriptions.</li>
+          <li>📊 Review your summary for total income, expenses, and balance.</li>
+          <li>🎯 Adjust spending to achieve a healthy financial balance.</li>
+        </ul>
+      </section>
+
+      <section class="tips">
+        <h2><i class="fa-solid fa-lightbulb"></i> Financial Tips & Best Practices</h2>
+        <div class="tips-grid">
+          <div class="tip">🎯 50/30/20 Rule – 50% needs, 30% wants, 20% savings.</div>
+          <div class="tip">🚨 Build 6 months of expenses as emergency fund.</div>
+          <div class="tip">📈 Start investing early for compound growth.</div>
+          <div class="tip">💳 Avoid high-interest debt; keep EMIs & credit under control.</div>
+          <div class="tip">📊 Track monthly spending to control habits.</div>
+          <div class="tip">🎓 Invest in your education & skills.</div>
+        </div>
+      </section>
+
+      <section class="quotes">
+        <h2>✨ Motivational Quotes</h2>
+        <div class="quotes-grid">
+          <blockquote class="quote">"A penny saved is a penny earned." <span class="author">- Benjamin Franklin</span></blockquote>
+          <blockquote class="quote">"Do not save what is left after spending, but spend what is left after saving." <span class="author">- Warren Buffett</span></blockquote>
+          <blockquote class="quote">"The habit of saving is itself an education." <span class="author">- T.T. Munger</span></blockquote>
+          <blockquote class="quote">"An investment in knowledge pays the best interest." <span class="author">- Benjamin Franklin</span></blockquote>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
