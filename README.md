@@ -1,6 +1,6 @@
 # 💰 TracknSpend — Smart Expense Tracker
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-tracknspend.com-green?style=for-the-badge)](https://tracknspend.com)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-tracknspend.netlify.app-green?style=for-the-badge)](https://tracknspend.netlify.app)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](#license)
 [![Made with](https://img.shields.io/badge/Made%20With-HTML%2C%20CSS%2C%20JavaScript-orange?style=for-the-badge)](#technologies-used)
 
